@@ -1,10 +1,15 @@
 # PRODIGY_ST_01
-Test cases for a simple calculator application, Prodigy InfoTech Software Testing Internship
-# Prodigy InfoTech – Software Testing Task 01
 
-## Calculator Application Testing
+Test cases for a simple calculator application, Prodigy InfoTech Software Testing Internship
+
+## Prodigy InfoTech – Software Testing Task 01
+### Calculator Application Testing
 
 This repository contains the manual functional testing work completed as part of the Software Testing Internship at Prodigy InfoTech.
+
+**Tester:** Priyanshu Sahoo
+
+---
 
 ## Objective
 
@@ -32,7 +37,7 @@ The calculator was tested for:
 - Division
 - Decimal calculations
 - Negative results
-- Order of operations
+- Order of operations (BODMAS)
 - Percentage
 - Clear Entry (CE)
 - Backspace
@@ -41,6 +46,7 @@ The calculator was tested for:
 - Consecutive operators
 - Repeated equals
 - Large number calculations
+- Non-numeric (alphabetic) character input
 - Input and stability testing
 
 ## Test Environment
@@ -57,7 +63,7 @@ The calculator was tested for:
 
 The detailed test cases and execution results are available in:
 
-**`TestCases_ST_01.xlsx`**
+**``**
 
 The Excel file contains:
 
@@ -68,16 +74,45 @@ The Excel file contains:
 - Expected results
 - Actual results
 - Test status
+- Test Summary (separate sheet)
+- Defect Log (separate sheet)
+- Test date (separate sheet)
 
-## Defects / Bugs
-
-Any failed test cases identified during execution are documented based on the actual behavior of the application.
-
-Defects are claimed with actual testing evidence.
+Any failed test cases identified during execution are documented based on the actual behavior of the application. Defects are reported based on actual testing evidence.
 
 ## Test Summary
 
-The final test summary, including the number of passed, failed, blocked, and not-executed test cases, is available in the **`TestCases_ST_01.xlsx`** file.
+| Total | Passed | Failed | Blocked | Not Executed |
+|       |        |        |         |              |
+|   36  |   30   |    6   |    0    |       0      |
+
+## Defects Found
+
+| Bug ID | Test Case(s) | Summary | Severity |
+|---|---|---|---|
+| BUG_01 | TC-015, TC-016, TC-018 | Calculator ignores BODMAS and evaluates left to right (e.g., `2 + 3 × 4` gives 20 instead of 14) | Medium |
+| BUG_02 | TC-019 | Division by zero shows raw `Infinity` instead of a user-friendly error message | Low |
+| BUG_03 | TC-022 | `NaN` shown when an expression starts with an operator | Low |
+| BUG_04 | TC-030 | `200 × 10 %` returns `0` instead of the expected percentage result | Low |
+
+Full steps to reproduce, expected results, and actual results are in the **Defect Log** sheet of the Excel file.
+
+## Key Observations
+
+- Basic arithmetic and decimal operations work correctly.
+- The calculator evaluates expressions strictly left to right and does not follow BODMAS.
+- Invalid input (extra operators, repeated decimal points, keyboard letters) is handled without crashing.
+- Division by zero and a leading operator show raw values (`Infinity`, `NaN`) instead of clear messages.
+- Very large results are shown in scientific notation (`9.99999998E+17`), so precision is lost.
+- `CE` clears the whole expression, not only the current entry.
+
+## What I Learned
+
+- How to write structured test cases with clear preconditions, steps, and expected results
+- The difference between positive (valid input) and negative (invalid input) testing
+- How to test boundary and edge cases such as zero, large numbers, and repeated decimal points
+- How to report a defect with reproducible steps, severity, and status
+- Why expected results should be specific, so each test is clearly a Pass or a Fail
 
 ## Conclusion
 
